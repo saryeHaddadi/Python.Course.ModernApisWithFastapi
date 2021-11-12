@@ -7,3 +7,8 @@ httpx
 jinja2
 aiofiles
 requests
+
+python-dateutil
+pydantic
+bs4
+colorama

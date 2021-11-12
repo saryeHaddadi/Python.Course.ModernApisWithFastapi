@@ -1,7 +1,6 @@
 import datetime
 from typing import List, Optional
 
-from dateutil.parser import parse
 from pydantic import BaseModel
 
 order_json = {
@@ -17,11 +16,15 @@ class Order(BaseModel):
     created_date: Optional[datetime.datetime]
     pages_visited: List[int] = []
     price: float
+    
+    def print_item_id(self):
+        print(self.item_id)
 
 
 o = Order(**order_json)
 print(o)
 
+o.print_item_id()
 
 # Default for JSON post
 # Can be done for others with mods.
