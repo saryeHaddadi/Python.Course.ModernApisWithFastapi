@@ -1,6 +1,9 @@
+from web.viewmodels.Location import Location
+from app.services import OpenWeatherMapService
 
-
-def GetWeatherValue():
-    return "Some report"
+# TODO: revoir la reference du model
+def GetWeatherValue(loc: Location, units: str):
+    repport = OpenWeatherMapService.get_report(loc, units)
+    return repport
 
 
