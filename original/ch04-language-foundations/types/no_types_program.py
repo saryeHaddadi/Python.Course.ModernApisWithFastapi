@@ -12,7 +12,7 @@ def counter(items):
     for i in items:
         total += i.value
 
-    if not running_max or total > running_max:
+    if running_max is None or total > running_max:
         running_max = total
 
     return total
