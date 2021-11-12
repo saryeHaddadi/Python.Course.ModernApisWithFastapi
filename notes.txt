@@ -1,0 +1,29 @@
+
+- Debug http://127.0.0.1:8000/
+- Debug http://127.0.0.1:8000/api/weather/portland?country=US&state=OR&units=imperial
+- C# Layered architecture: https://medium.com/aspnetrun/layered-architecture-with-asp-net-core-entity-framework-core-and-razor-pages-53a54c4028e3
+
+
+
+
+
+core.Entities
+* Categorie
+	- CategoryName { get; set; }
+	- Description { get; set; }
+	- ICollection<Product> Products { get; private set; }
+
+app.Models
+* CategoryModel
+	- CategoryName { get; set; }
+	- Description { get; set; }
+
+web.Mapper
+* AspnetRunProfile.cs
+	- CreateMap<ProductModel, ProductViewModel>().ReverseMap();
+	- CreateMap<CategoryModel, CategoryViewModel>().ReverseMap();
+web.viewmodels
+* CategoryViewModel.cs 
+	- CategoryName { get; set; }
+	- Description { get; set; }
+
