@@ -2,7 +2,7 @@ import fastapi
 from starlette.requests import Request
 from starlette.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
-
+from http import HTTPStatus
 from web.config import TEMPLATE_PATH
 
 router = fastapi.APIRouter()
@@ -15,5 +15,6 @@ def index(request: Request):
 @router.get('/favicon.ico')
 def favicon():
     # /static should be mounted
-    return fastapi.responses.RedirectResponse(url='/static/img/favicon.ico')
+    return fastapi.responses.RedirectResponse(url='/static/img/favicon.ico',
+                                              status_code=HTTPStatus.PERMANENT_REDIRECT)
          
