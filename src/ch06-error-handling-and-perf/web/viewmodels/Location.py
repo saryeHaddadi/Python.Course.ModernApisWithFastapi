@@ -5,3 +5,6 @@ class Location(BaseModel):
     city: str
     country: str = 'US'
     state: Optional[str] = None
+
+
+
