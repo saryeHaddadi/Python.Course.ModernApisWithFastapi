@@ -16,11 +16,10 @@ async def AddReport(reportSubmitted: ReportSubmitted) -> Report:
                     description= reportSubmitted.description,
                     location = reportSubmitted.location,
                     created_date=datetime.datetime.now())
-    
     # Simulate saving to the DB
     # Would be an async call here
     __reports.add(report)
-    return list(__reports)
+    return report
 
 
 

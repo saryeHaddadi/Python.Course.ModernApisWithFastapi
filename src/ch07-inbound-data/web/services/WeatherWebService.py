@@ -2,14 +2,15 @@ import fastapi
 from typing import Optional
 from fastapi import Depends
 from app.services.WeatherService import GetWeatherValue, GetWeatherValueAsync
+from core.entities.Temperature import Temperature
 from web.viewmodels.Location import Location
 from infra.exceptions.ValidationException import ValidationException
 
 router = fastapi.APIRouter()
 
 
-@router.get('/api/weather/{city}')
-async def GetWeatherAsync(loc: Location = Depends(), units: Optional[str] = 'metric'):
+@router.get('/api/weather/{city}', response_model=Temperature)
+async def GetWeatherAsync(loc: Location = Depends(), units: Optional[str] = 'metric') -> Temperature:
     try:
         return await GetWeatherValueAsync(loc, units)
     except ValidationException as e:

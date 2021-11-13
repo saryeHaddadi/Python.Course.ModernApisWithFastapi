@@ -1,11 +1,10 @@
 import fastapi
 from fastapi.staticfiles import StaticFiles
-from pathlib import Path
 import json
 from app.services import OpenWeatherMapService
 from web.services import IndexPageService, WeatherWebService, ReportWebService
 from web.config import STATIC_PATH, SETTINGS_FILEPATH
-
+from infra.data import SeedFakeData
 
 class StartupApp:
     def __init__(self):
@@ -20,6 +19,7 @@ class StartupApp:
         self.configure_routing()
         self.configure_mount()
         self.configure_apikey()
+        SeedFakeData.seed_fake_data()
 
     def configure_routing(self):
         self.app.include_router(IndexPageService.router)
@@ -39,6 +39,12 @@ class StartupApp:
             # TODO: revoir reference OpenWeatherMapService
             OpenWeatherMapService.apiKey = settings.get('apiKey')
 
+import asyncio
+from web.viewmodels.Location import Location
+from core.entities.ReportSubmitted import ReportSubmitted
+from app.services.ReportService import AddReport
+
+        
 
 
          

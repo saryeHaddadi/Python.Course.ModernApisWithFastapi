@@ -17,8 +17,8 @@ async def GetReports() -> List[Report]:
         print(f"Server crashed while processing request: {e}")
         return fastapi.Response(content="Error processing your request.", status_code=500)
         
-@router.post('/api/reports', name='reports', response_model=List[Report], status_code=201)
-async def AddReport(reportSubmitted: ReportSubmitted) -> List[Report]:
+@router.post('/api/reports', name='reports', response_model=Report, status_code=201)
+async def AddReport(reportSubmitted: ReportSubmitted) -> Report:
     try:
         return await ReportService.AddReport(reportSubmitted)
     except ValidationException as e:

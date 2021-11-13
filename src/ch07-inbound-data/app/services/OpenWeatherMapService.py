@@ -1,21 +1,22 @@
-import json
 from typing import Optional, Tuple
+from core.entities.Temperature import Temperature
 from web.viewmodels.Location import Location
 from infra.cache import weather_cache
 from infra.exceptions.ValidationException import ValidationException
 import requests
 import httpx
 
+
 apiKey: Optional[str] = None
 
-def get_report(loc: Location, units: str) -> dict:
+def get_report(loc: Location, units: str) -> Temperature:
     q, url = build_query_and_url(loc, units)
 
     resp = requests.get(url)
     resp.raise_for_status()
     return extract_temperature(resp)
 
-async def get_report_async(loc: Location, units: str) -> dict:
+async def get_report_async(loc: Location, units: str) -> Temperature:
     loc, units = clean_and_validate_params(loc, units)
     
     forecast = weather_cache.get_weather(loc, units)
@@ -34,7 +35,8 @@ async def get_report_async(loc: Location, units: str) -> dict:
     return forecast
 
 def extract_temperature(resp: requests.Response):
-    return resp.json()['main']
+    return Temperature(**resp.json()['main'])
+
 
 def build_query_and_url(loc: Location, units: str):
     q = f'{loc.city},{loc.country},{loc.state}' if loc.state is not None else f'{loc.city},{loc.country}'
