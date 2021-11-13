@@ -1,6 +1,7 @@
 
 - Debug http://127.0.0.1:8000/
-- Debug http://127.0.0.1:8000/api/weather/portland?country=US&state=OR&units=imperial
+- GetWeather: http://127.0.0.1:8000/api/weather/portland?country=US&state=OR&units=imperial
+- GetReports: http://127.0.0.1:8000/api/reports
 - C# Layered architecture: https://medium.com/aspnetrun/layered-architecture-with-asp-net-core-entity-framework-core-and-razor-pages-53a54c4028e3
 
 

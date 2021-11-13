@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 import json
 from app.services import OpenWeatherMapService
-from web.services import IndexPageService, WeatherWebService
+from web.services import IndexPageService, WeatherWebService, ReportWebService
 from web.config import STATIC_PATH, SETTINGS_FILEPATH
 
 
@@ -24,6 +24,7 @@ class StartupApp:
     def configure_routing(self):
         self.app.include_router(IndexPageService.router)
         self.app.include_router(WeatherWebService.router)
+        self.app.include_router(ReportWebService.router)
 
     def configure_mount(self):
         self.app.mount('/static', StaticFiles(directory=STATIC_PATH))
