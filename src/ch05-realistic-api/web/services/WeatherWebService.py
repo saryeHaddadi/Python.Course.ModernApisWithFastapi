@@ -1,16 +1,16 @@
 import fastapi
 from typing import Optional
 from fastapi import Depends
-from app.services.WeatherService import GetWeatherValue
+from app.services.WeatherService import GetWeatherValue, GetWeatherValueAsync
 from web.viewmodels.Location import Location
 
 router = fastapi.APIRouter()
 
 
 @router.get('/api/weather/{city}')
-def GetWeather(loc: Location = Depends(),
+async def GetWeatherAsync(loc: Location = Depends(),
                units: Optional[str] = 'metric'):
-    return GetWeatherValue(loc, units)
+    return await GetWeatherValueAsync(loc, units)
 
 
 
