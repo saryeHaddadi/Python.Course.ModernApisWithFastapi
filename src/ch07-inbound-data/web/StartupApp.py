@@ -8,11 +8,9 @@ from infra.data import SeedFakeData
 
 class StartupApp:
     def __init__(self):
-        print('AAAAA')
         self.app = None
     
     def create_app(self):
-        
         self.app = fastapi.FastAPI()
         self.configure_app()
         return self.app
