@@ -6,6 +6,12 @@
 
 
 
+TODOs
+- Repository, Entities, Models, mappers (service should use entitites or model).
+- Opening/closing session with a WITH BLOCK, Seed Database, Migration
+- Dependency Injection
+
+
 
 
 core.Entities
